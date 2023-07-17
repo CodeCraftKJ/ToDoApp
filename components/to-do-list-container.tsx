@@ -28,6 +28,10 @@ const ToDoListContainer: NextPage = () => {
     );
   };
 
+  const deleteToDo = (id: number) => {
+    setToDoList((prevList) => prevList.filter((item) => item.id !== id));
+  };
+
   // Split the list into completed and to be done items
   const completedItems = toDoList.filter((item) => item.isDone);
   const todoItems = toDoList.filter((item) => !item.isDone);
@@ -50,6 +54,7 @@ const ToDoListContainer: NextPage = () => {
           task={item.task}
           isDone={item.isDone}
           onClick={() => toggleToDoStatus(item.id)}
+          onDelete={() => deleteToDo(item.id)}
         />
       ))}
       <div className="self-stretch relative bg-darkslategray h-[0.06rem]" />
